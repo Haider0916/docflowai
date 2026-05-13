@@ -23,7 +23,7 @@ export class Document {
     errormsg!: string | null;
 
     @Column({ type: 'enum', enum: FileStatusEnum, default: FileStatusEnum.UPLOADED })
-    fileStatus!: FileStatusEnum;
+    filestatus!: FileStatusEnum;
 
     @CreateDateColumn()
     createdAt!: Date;
