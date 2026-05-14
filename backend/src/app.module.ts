@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
+import { BullBoardModule } from '@bull-board/nestjs';
 import { DocumentsModule } from './documents/documents.module';
+import { ExpressAdapter } from '@bull-board/express';
 
 @Module({
   imports: [
@@ -32,6 +34,10 @@ import { DocumentsModule } from './documents/documents.module';
           port: config.get('REDIS_PORT'),
         }
       })
+    }),
+    BullBoardModule.forRoot({
+      route: '/admin/queues',
+      adapter: ExpressAdapter,
     }),
     DocumentsModule
   ]
